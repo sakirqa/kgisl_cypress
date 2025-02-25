@@ -1,0 +1,14 @@
+{
+  "name": "kgisl",
+  "version": "1.0.0",
+  "description": "KGiSL assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sk sakir ali",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.0.3"
+  }
+}
