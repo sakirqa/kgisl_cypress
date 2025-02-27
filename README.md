@@ -1,9 +1,9 @@
 # KGiSL Assessment
-#Assessment for Cypress and Postman API by Sheikh Sakir Ali
+# Assessment for Cypress and Postman API by Sheikh Sakir Ali
 
-#API Postman:
+# API Postman:
 
-##Test Result:
+## Test Result:
 
 ![image](https://github.com/user-attachments/assets/5b68f42d-a4f1-4319-a4fd-e2de5246e474)
 
@@ -36,5 +36,41 @@
 1. Navigate to the **Collections** tab in Postman.
 2. Select the imported collection.
 3. Click on the **Run** button to open the Collection Runner.
+
+
+
+# Cypress
+
+## Prerequisites
+
+Install node.js and cypress and vscode. Instructions can be found in this link: https://docs.cypress.io/app/get-started/install-cypress
+
+
+ ## Setup Instructions
+
+1. Clone this repository to your local machine:
+   ```bash
+   git clone [https://github.com/sakirqa/kgisl_cypress.git]
+   ```
+   or you can download the zip files through github by following the steps mentioned in the screenshot
+
+   ## Running the Cypress
+
+1. Open the repository folder in the VSCode.
+2. Open a Terminal and run "npm i"
+3. run command "npx cypresss open"
+4. Select "E2E testing" and any Browser.
+5. Click on the Test spec file.
+
+   ![image](https://github.com/user-attachments/assets/1fa81108-53bf-4d08-ab20-3d25c7f475ae)
+
+## Cypress Test Result
+
+![image](https://github.com/user-attachments/assets/9cc3e499-a4c2-46dd-b28e-8ddafdd85b18)
+
+## Contact
+
+If you encounter any issues or have questions, feel free to contact me at **sakir.qa@gmail.com** and WhatsApp me on **+91-8617230432**.
+
 
 
