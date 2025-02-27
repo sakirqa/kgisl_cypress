@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "a1be4642-9945-4f5e-88d8-c11241992605",
+		"name": "kgisl_api_ratecalc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15256602"
+	},
+	"item": [
+		{
+			"name": "country_list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Should not be empty\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.be.an(\"array\").that.is.not.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has valid CountryCode and CountryName for all entries\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.be.an(\"array\").that.is.not.empty;\r",
+							"    response.forEach((item, index) => {\r",
+							"        pm.expect(item).to.have.property(\"CountryCode\");\r",
+							"        pm.expect(item.CountryCode).to.be.a(\"string\").that.is.not.empty;\r",
+							"        pm.expect(item).to.have.property(\"CountryName\");\r",
+							"        pm.expect(item.CountryName).to.be.a(\"string\").that.is.not.empty;\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/api/countries",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getStateByPostcode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response should not be empty\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.be.an(\"array\").that.is.not.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response contains valid stateName, city, and postCode acording to the postCode in the body\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    const stateData = response[0];\r",
+							"    pm.expect(stateData.stateNm).to.equal(\"Johor\");\r",
+							"    pm.expect(stateData.city).to.equal(\"MUAR\");\r",
+							"    pm.expect(stateData.postCode).to.equal(\"84000\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "www-api.pos.com.my",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "https://www.pos.com.my",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "https://www.pos.com.my/",
+						"type": "text"
+					},
+					{
+						"key": "Sec-ch",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "postCode",
+							"value": "84000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/getStateByPostcode",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"getStateByPostcode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "price",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Should not be Empty\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response).to.be.an(\"array\").that.is.not.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check that all required keys exist\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    const responseData = response[0];\r",
+							"    pm.expect(responseData).to.have.property('first');\r",
+							"    //we can check all the fields like this\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check types of keys\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    const responseData = response[0];\r",
+							"    pm.expect(typeof responseData.first).to.eql('string');\r",
+							"    //we can check all the fields like this\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check for valid numerical values\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    const responseData = response[0];\r",
+							"    pm.expect(parseFloat(responseData.totalAmount)).to.be.above(0);\r",
+							"  //we can check all the fields like this\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check isDomestic is a boolean\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    const responseData = response[0];\r",
+							"    pm.expect(typeof responseData.isDomestic).to.eql('boolean');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check estimateDelivery format\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    const responseData = response[0];\r",
+							"    pm.expect(responseData.estimateDelivery).to.match(/^\\d{1} - \\d{1} working days$/);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check totalAmount and fuelCharge are non-null\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    const responseData = response[0];\r",
+							"    pm.expect(responseData.totalAmount).to.not.be.null;\r",
+							"    pm.expect(responseData.fuelCharge).to.not.be.null;\r",
+							"    pm.expect(parseFloat(responseData.fuelCharge)).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "country",
+							"value": "Malaysia",
+							"type": "text"
+						},
+						{
+							"key": "postcodeFrom",
+							"value": "35600",
+							"type": "text"
+						},
+						{
+							"key": "postcodeTo",
+							"value": "84000",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/price",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"price"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://www-api.pos.com.my",
+			"type": "string"
+		}
+	]
+}
